@@ -9,10 +9,6 @@ def rest_get_call(url)
   return response
 end
 
-get '/hi' do
-  "Hello World!"
-end
-
 #get index page
 get '/' do
   erb :index
@@ -23,13 +19,15 @@ get '/property/:title_number' do
 
   response = rest_get_call(title_url)
 
-  json = response.to_json()
+  return response
 
-  service_frontend_url = ENV['SERVICE_FRONTEND_URL'] + '/property/'
+  #json = response.to_json()
 
-  erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
+  #service_frontend_url = ENV['SERVICE_FRONTEND_URL'] + '/property/'
+
+  #erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
 end
 
 get '/search/results' do
-  
+
 end
