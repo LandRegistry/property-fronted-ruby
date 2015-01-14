@@ -26,7 +26,7 @@ get '/property/:title_number' do
   response = rest_get_call(title_url)
 
   json = JSON.parse(response)
-  
+
   service_frontend_url = ENV['SERVICE_FRONTEND_URL'] + '/property/'
 
   erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
