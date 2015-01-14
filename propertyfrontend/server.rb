@@ -3,7 +3,7 @@ def rest_get_call(url)
   uri = URI.parse(url)
 
   http = Net::HTTP.new(uri.host, uri.port)
-  request = Net::HTTP::Get.new(uri.path,  initheader = {'Content-Type' =>'application/json'})
+  request = Net::HTTP::Get.new(uri.path + (uri.query != nil ? '?' + uri.query : ''),  initheader = {'Content-Type' =>'application/json'})
   response = http.request(request)
 
   return response.body
@@ -51,6 +51,9 @@ get '/search/results' do
   search_url = search_api_url + '?query=' + query
 
   response = rest_get_call(search_url)
+
+
+
   result_json = JSON.parse(response)
 
   one_result = result_json['results'].length == 1
