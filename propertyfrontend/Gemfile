@@ -2,5 +2,6 @@ source 'https://rubygems.org'
 
 gem 'sinatra'
 gem 'bundle'
+gem 'json'
 gem 'govuk_frontend_toolkit', :git => "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", :submodules => true
 gem 'sinatra-assetpack', :require => 'sinatra/assetpack'
