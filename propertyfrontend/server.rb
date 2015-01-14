@@ -33,7 +33,13 @@ get '/property/:title_number' do
     raise 404
   end
 
-  erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
+  erb :body_layout, :layout => false do
+    erb :lr_layout, :layout => false do
+      erb :govuk_layout do
+        erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
+      end
+    end
+  end
 
 end
 
@@ -41,7 +47,7 @@ get '/search/results' do
 
   query =  params['search']
 
-  search_api_url = search_api + '/search'
+  search_api_url = ENV['SEARCH_API'] + '/search'
   search_url = search_api_url + '?query=' + query
 
   response = rest_get_call(search_url)
