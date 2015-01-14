@@ -6,7 +6,11 @@ def rest_get_call(url)
   request = Net::HTTP::Get.new(uri.path,  initheader = {'Content-Type' =>'application/json'})
   response = http.request(request)
 
-  return response
+  return response.body
+end
+
+get '/hi' do
+  "Hello World!"
 end
 
 #get index page
@@ -15,17 +19,17 @@ get '/' do
 end
 
 get '/property/:title_number' do
+
+  $stdout.puts params
   title_url = ENV['SEARCH_API'] + '/titles/' + params[:title_number]
 
   response = rest_get_call(title_url)
 
-  return response
+  json = JSON.parse(response)
+  
+  service_frontend_url = ENV['SERVICE_FRONTEND_URL'] + '/property/'
 
-  #json = response.to_json()
-
-  #service_frontend_url = ENV['SERVICE_FRONTEND_URL'] + '/property/'
-
-  #erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
+  erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
 end
 
 get '/search/results' do

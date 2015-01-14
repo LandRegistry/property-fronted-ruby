@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'json'
-require 'net/http/persistent'
+require 'net/http'
 
 set :bind, '0.0.0.0'
 puts ENV['port']
