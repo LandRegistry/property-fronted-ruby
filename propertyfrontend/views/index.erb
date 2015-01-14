@@ -1,3 +1,45 @@
+<main id="wrapper" role="main">
+  <div id="content">
 
+    {% include "inc_alpha_banner.html" %}
 
-<div> Hello World! Luv H</div>
+    <div id="global-breadcrumb">
+      <ol role="breadcrumbs">
+        <li><a href="https://www.gov.uk">Home</a></li>
+      </ol>
+    </div>
+
+    <div class="outer-block">
+      <div class="inner-block">
+
+        <div class="text">
+
+          <h1 class="heading-xlarge">
+            Find property information
+          </h1>
+
+          <p class="lede">Use this service to get information related to any property (eg price paid, council tax band) in England and Wales.</p>
+
+        </div>
+
+        <form action="/search/results" method="get" class="form">
+          <div class="form-group">
+            <label class="form-label-bold" for="search-terms">
+              Find a property
+              <span class="form-hint">
+                e.g. postcode, street name or town/city
+              </span>
+            </label>
+            <input type="text" class="form-control" name="search" id="search-terms" />
+          </div>
+
+          <div class="form-group">
+            <button type="submit" class="button">Search</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+</main>
