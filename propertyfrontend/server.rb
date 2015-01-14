@@ -34,4 +34,15 @@ end
 
 get '/search/results' do
 
+  query =  params['search']
+
+  search_api_url = search_api + '/search'
+  search_url = search_api_url + '?query=' + query
+
+  response = rest_get_call(search_url)
+  result_json = JSON.parse(response)
+
+  one_result = result_json['results'].length == 1
+
+  erb :search_results, :locals => {:results => result_json['results'], :query => query, :apiKey =>ENV['OS_API_KEY']}
 end
