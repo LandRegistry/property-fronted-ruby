@@ -58,5 +58,11 @@ get '/search/results' do
 
   one_result = result_json['results'].length == 1
 
-  erb :search_results, :locals => {:results => result_json['results'], :query => query, :apiKey =>ENV['OS_API_KEY']}
+  erb :body_layout, :layout => false do
+    erb :lr_layout, :layout => false do
+      erb :govuk_layout do
+        erb :search_results, :locals => {:results => result_json['results'], :query => query, :apiKey =>ENV['OS_API_KEY']}
+      end
+    end
+  end 
 end

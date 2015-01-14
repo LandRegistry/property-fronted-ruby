@@ -1,7 +1,7 @@
 {% extends "propertyfrontend_base.html" %}
 {% import 'address_macros.html' as address  with context %}
 
-{% block content %}
+
 <main id="wrapper" role="main">
   <div id="content">
 
@@ -28,23 +28,23 @@
         </div>
       </form>
 
-      {% if results %}
+      <% if results %>
 
       <ul class="results-list">
-        {% for title in results %}
+        <% for title in results %>
         <li class="result">
 
 
           <div class="grid grid-1-2">
             <div class="lede">
-              {{ address.format(title["property_description"]["fields"]["addresses"][0], title.title_number) }}
+              <%= (title["property_description"]["fields"]["addresses"][0]['full_address'] ) %>
             </div>
 
             <dl class="definition-inline">
               <dt>Tenure</dt>
-              <dd>{{ title.tenure | capitalize }}</dd>
+              <dd><%= title['tenure'] %></dd>
               <dt>Title number</dt>
-              <dd>{{ title.title_number }}</dd>
+              <dd><%= title['title_number'] %></dd>
             </dl>
           </div>
 
@@ -54,16 +54,16 @@
             </div>
           </div>
         </li>
-        {% endfor %}
+        <% end %>
       </ul>
 
-      {% else %}
+      <% else %>
 
       <div class="text">
         <p>Sorry, no results have been found. Please try <a href="#search-terms">searching again</a> using different terms.</p>
       </div>
 
-      {% endif %}
+      <% end %>
 
     </div>
 
@@ -137,4 +137,3 @@
       extentGeoJson.addTo(map);
     });
   </script>
-  {% endblock %}
