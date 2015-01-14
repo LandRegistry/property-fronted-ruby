@@ -29,7 +29,12 @@ get '/property/:title_number' do
   
   service_frontend_url = ENV['SERVICE_FRONTEND_URL'] + '/property/'
 
+  if json.nil?
+    raise 404
+  end
+
   erb :view_property, :locals => {:title => json, :apiKey => ENV['OS_API_KEY'], :service_frontend_url =>service_frontend_url}
+
 end
 
 get '/search/results' do
